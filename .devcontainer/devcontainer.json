@@ -1,0 +1,31 @@
+{
+  "name": "Jupyter Notebook",
+  "dockerComposeFile": [
+    "docker-compose.yaml"
+  ],
+  "service": "jupyter",
+  "runArgs": [
+    "--env-file",
+    ".devcontainer/devcontainer.env"
+  ],
+  "workspaceFolder": "/w",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/bin/python3",
+        "python.languageServer": "Pylance",
+        "files.autoSave": "afterDelay",
+        "files.autoSaveDelay": 1000
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.jupyter-keymap",
+        "ms-toolsai.jupyter-renderers",
+        "vscode-icons-team.vscode-icons",
+        "wayou.vscode-todo-highlight"
+      ]
+    }
+  }
+}
