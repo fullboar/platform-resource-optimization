@@ -6,6 +6,8 @@
   }
 </style>
 
+<mark style="background-color: lightblue">Marked text</mark>
+
 # Quota Approval Process
 
 # TL;DR 
