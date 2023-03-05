@@ -95,8 +95,7 @@ Once your analysis is completed you can either approve the quota request because
 
 Email the technical contacts and Cc the Po with an email outlining your thoughts such as:
 
-```! 
-
+__
 Subject: Quota Request for ABC Forms Improvement Project. 
 
 Hi, 
@@ -115,7 +114,7 @@ Thanks in Advance,
 
 J. 
 
-``` 
+__ 
 
 If you do approve the quota request, I generally require the team to demonstrate good resource utilization before approving subsequent requests. For example, if you request quota for `dev`, and the request is small, it's usually ok and approved on the spot. But to move to the next namespace I'll need to see evidence that additional quota is required. An email like the following helps prepare teams for this so there are no surprises:
 
@@ -178,4 +177,9 @@ J.
 - When they ask for **disk storage**, I always email the team and remind them that with OpenShift 4.x they can slowly grow PVCs as needed. By this I mean, if they only have 500Mb of data in Prod there is no reason to allocation 10G of storage. Allocate 3, setup alerting and grow it over time. 
 - When they ask for memory, I remind them that databases may use all the memory they are given for caching resulting in diminishing returns. 
 
- 
+<style>
+  code {
+    white-space : pre-wrap !important;
+    word-break: break-word;
+  }
+</style>
