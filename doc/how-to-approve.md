@@ -1,13 +1,3 @@
-<style>
-  code {
-    white-space : pre-wrap !important;
-    word-break: break-word;
-    background-color: 'red';
-  }
-</style>
-
-<mark style="background-color: lightblue">Marked text</mark>
-
 # Quota Approval Process
 
 # TL;DR 
@@ -105,7 +95,7 @@ Once your analysis is completed you can either approve the quota request because
 
 Email the technical contacts and Cc the Po with an email outlining your thoughts such as:
 
-<code>
+```text
   Subject: Quota Request for ABC Forms Improvement Project. 
 
   Hi, 
@@ -123,7 +113,7 @@ Email the technical contacts and Cc the Po with an email outlining your thoughts
   Thanks in Advance, 
 
   J. 
-</code>
+```
 
 If you do approve the quota request, I generally require the team to demonstrate good resource utilization before approving subsequent requests. For example, if you request quota for `dev`, and the request is small, it's usually ok and approved on the spot. But to move to the next namespace I'll need to see evidence that additional quota is required. An email like the following helps prepare teams for this so there are no surprises:
 
