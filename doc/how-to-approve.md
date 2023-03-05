@@ -95,7 +95,7 @@ Once your analysis is completed you can either approve the quota request because
 
 Email the technical contacts and Cc the Po with an email outlining your thoughts such as:
 
-__
+<code>
 Subject: Quota Request for ABC Forms Improvement Project. 
 
 Hi, 
@@ -113,8 +113,7 @@ Your API pods are horizontally scaling, that is, they're designed to run on VMs 
 Thanks in Advance, 
 
 J. 
-
-__ 
+</code>
 
 If you do approve the quota request, I generally require the team to demonstrate good resource utilization before approving subsequent requests. For example, if you request quota for `dev`, and the request is small, it's usually ok and approved on the spot. But to move to the next namespace I'll need to see evidence that additional quota is required. An email like the following helps prepare teams for this so there are no surprises:
 
