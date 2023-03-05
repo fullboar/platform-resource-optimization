@@ -1,3 +1,10 @@
+<style>
+  code {
+    white-space : pre-wrap !important;
+    word-break: break-word;
+  }
+</style>
+
 # Quota Approval Process
 
 # TL;DR 
@@ -175,10 +182,3 @@ J.
 - Some teams always try hard like Button Inc. Generally, I trust them; 
 - When they ask for **disk storage**, I always email the team and remind them that with OpenShift 4.x they can slowly grow PVCs as needed. By this I mean, if they only have 500Mb of data in Prod there is no reason to allocation 10G of storage. Allocate 3, setup alerting and grow it over time. 
 - When they ask for memory, I remind them that databases may use all the memory they are given for caching resulting in diminishing returns. 
-
-<style>
-  code {
-    white-space : pre-wrap !important;
-    word-break: break-word;
-  }
-</style>
