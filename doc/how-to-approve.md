@@ -2,6 +2,7 @@
   code {
     white-space : pre-wrap !important;
     word-break: break-word;
+    background-color: 'red';
   }
 </style>
 
