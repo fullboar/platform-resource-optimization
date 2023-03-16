@@ -89,30 +89,37 @@ The section above on **slack** and **throttling** provide enough information to 
 * When `limut.cpu` is too low teams may experience throttling and think they need more quota; 
 * Does the app scale vertically: no Horizontal Pod Autoscaller (HPA) and high `limit.cpu`, or horizontally: has an HPA and well set `request.cpu`.
 
-# Evaluation
+# Remedy
 
-Once your analysis is completed you can either approve the quota request because resources are being used well enough, or because there is not much to be gained by further optimization. If you feel the request for quota is unnecessary:
+Once your analysis is completed you can either approve the quota request because resources are being used well enough, or because there is not much to be gained by further optimization. 
+
+If you feel the quota in unseseray and the problem is related to a minunderstanding in CPU resource utilization consider this presentation on the subject:
+
+[Resource Utilization](https://fullboarca-my.sharepoint.com/:p:/g/personal/jason_leach_fullboar_ca/EYuDKhk5TU9ImMzroMvFgMkBwkRT7q1qhTGgEr3MtGdqVg?e=FFvRyL)
+
+
+Alternativly, if you feel the request for quota is unnecessary:
 
 Email the technical contacts and Cc the Po with an email outlining your thoughts such as:
 
 ```text
-  Subject: Quota Request for ABC Forms Improvement Project. 
+Subject: Quota Request for ABC Forms Improvement Project. 
 
-  Hi, 
+Hi, 
 
-  I've had a look at your request for quota in the abc123-dev namespace. Before we can proceed with additional quota, we need the existing project to better utilize the resources it has. Here are few ideas to help: 
+I've had a look at your request for quota in the abc123-dev namespace. Before we can proceed with additional quota, we need the existing project to better utilize the resources it has. Here are few ideas to help: 
 
-  Your Patroni pods have a `request.cpu` value of 500m but only use 10m. Consider setting this value much lower, to 40m while leaving the limit where it is. This should free some quota for other workload to use while not impacting performance. 
+Your Patroni pods have a `request.cpu` value of 500m but only use 10m. Consider setting this value much lower, to 40m while leaving the limit where it is. This should free some quota for other workload to use while not impacting performance. 
 
-  In your dev namespace consider just running a single patroni replica. There is not much to be gained by running multiple pods in dev. Generally, run 1 pod id dev, two in test, then three or more in production. 
+In your dev namespace consider just running a single patroni replica. There is not much to be gained by running multiple pods in dev. Generally, run 1 pod id dev, two in test, then three or more in production. 
 
-  Your API pods are horizontally scaling, that is, they're designed to run on VMs where you add more CPU to make the application performance better. A cloud native application should be several small pods where more are created as demand increases. Consider adding a Horizontal Pod Autoscaller to your production environment. 
+Your API pods are horizontally scaling, that is, they're designed to run on VMs where you add more CPU to make the application performance better. A cloud native application should be several small pods where more are created as demand increases. Consider adding a Horizontal Pod Autoscaller to your production environment. 
 
 
 
-  Thanks in Advance, 
+Thanks in Advance, 
 
-  J. 
+J. 
 ```
 
 If you do approve the quota request, I generally require the team to demonstrate good resource utilization before approving subsequent requests. For example, if you request quota for `dev`, and the request is small, it's usually ok and approved on the spot. But to move to the next namespace I'll need to see evidence that additional quota is required. An email like the following helps prepare teams for this so there are no surprises:
