@@ -1,3 +1,6 @@
 *.orig
 .DS_Store
 pg-data/*
+.env
+oc*.gz
+*.xlsx
