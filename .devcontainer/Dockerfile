@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:20.04
 
 RUN apt-get update && \
   apt-get install -y git zsh curl python3 python3-pip build-essential ca-certificates libpq-dev postgresql-client && \

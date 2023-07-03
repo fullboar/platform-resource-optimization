@@ -8,6 +8,12 @@ ipython-sql
 python-dotenv
 psycopg2
 sqlalchemy
+requests
+openai
+matplotlib
+scipy
+openai
+openpyxl
 # This might resolve the extension load issue:
 # Unable to load extension: pydevd_plugins.extensions.types.pydevd_plugin_pandas_types
 #magicgui==0.3.7
