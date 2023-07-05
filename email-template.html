@@ -1,0 +1,85 @@
+<p>Hey Team, &nbsp;<br>
+  <br>
+  I'm working with Platform Services to help teams better utilize resources on the OpenShift platform. The pods in your
+  project set <strong>@{items('Apply_to_each')?['namespace']}</strong> on the <strong>Silver</strong> cluster are using
+  about <strong>@{items('Apply_to_each')?['usage_pct']}%</strong> of the CPU resources requested. When resources are
+  requested but not used, colloquially known as “slack”, it prevents any other teams in the community from using them,
+  limits teams on-boarding to the platform, or requires us to unnecessarily purchase additional hardware. Below are some
+  instructions on how to identify and correct slack.<br>
+  <br>
+  Want to meet at your convenience? Use <a href="https://calendly.com/jason-leach/30min">this link</a> to book some
+  time. I can do a presentation on resource optimization for your team.<br>
+  <br>
+  <strong>How to spot waste (Slack)?</strong> &nbsp;<br>
+  <br>
+  Here's a simple guide on how to identify resource waste (slack) within your project namespaces:<br>
+</p>
+<ol>
+  <li>Open the OpenShift Web console and navigate to your dev, test, or prod namespace.</li>
+  <li>Locate the CPU graph and click on it.</li>
+  <li>Expand the graph view to cover a period of two weeks (2w), as shown in the image below (and attached).</li>
+  <li>Observe the graph closely, focusing on the blue and yellow lines.</li>
+  <li>If you notice a significant gap between the two lines, it indicates the presence of resource waste.</li>
+</ol>
+<br>
+By following these steps, you can easily identify instances where resources are being underutilized, resulting in waste.
+Taking note of these gaps will help you understand where improvements can be made to optimize resource allocation and
+enhance efficiency.<br>
+<br>
+@{variables('Image Link')}
+<br>
+<br>
+<strong>How to better use CPU resources?</strong> &nbsp;<br>
+<br>
+To help eliminate waste and optimize resource allocation within your pods, here are some simple yet effective best
+practices:<br>
+</p>
+<ol>
+  <li>Align requested CPU with usage: Ensure that the CPU resources requested by your pod (request.cpu) are no more than
+    1.6 times its actual usage. This allows for efficient resource utilization. Additionally, consider using “limit”
+    values to account for occasional spikes of heavy usage. You will need to change your deployment manifets to make
+    these changes permanent.</li>
+  <li>Focus on `limit.cpu` for performance: It's important to note that only the `limit.cpu` setting directly impacts
+    performance. If your pods are experiencing slow performance, over-allocating `request.cpu` will not address the
+    underlying issue.</li>
+  <li>Tailor CPU allocation for different environments: Dev and Test pods do not require provisioning on the same scale
+    as production. Be more aggressive with the requested CPU allocation in the development and testing stages, while
+    being slightly more generous in production.</li>
+  <li>Put unused environments to sleep: If certain environments (dev, test, tools) are no longer actively under
+    development, consider putting them to sleep. This helps conserve resources. Instructions for this can be found in
+    the Pro Tips section.</li>
+  <li>Set `limit.cpu` higher than `request.cpu`: To account for usage spikes, latency, or performance-related issues,
+    it's advisable to set the `limit.cpu` noticeably higher than the `request.cpu`. As others optimize resource usage,
+    and given our available capacity, you should consistently obtain your desired `limit.cpu` values. OpenShift will
+    make every effort to accommodate the `limit.cpu` value you specify.</li>
+  <li>Differentiate request and limit values for environments: Tailor the `request` and `limit` values based on the
+    specific requirements of each environment (dev, test, and prod). Dev and test environments do not need to be
+    provisioned to the same extent as production. Consider keeping only one pod for services in dev, up to two in test,
+    and three or more in production. Additionally, you can leverage a Horizontal Pod Autoscaler (HPA) to automatically
+    create new pods when others are busy.</li>
+</ol><br>
+<br>
+Implementing these best practices will help streamline resource utilization and promote efficient allocation across your
+pods. If you have any questions or need further guidance, please don't hesitate to reach out. Together, we can optimize
+resource usage and enhance overall performance.
+</p>
+<strong>Pro Tips 🤓</strong><br>
+</p>
+<br>
+<ul>
+  <li>Put a service to sleep until it detects network traffic. This is a great way to conserve resources if you’re no
+    longer actively using dev, test or tools. Use the command `oc idle service-name-here` or see an example here.</li>
+  <li>If you won’t be using the environment for an extended period scale down the deployments with the command `oc scale
+    --replicas=0 deployment-config-name-here`
+    Use your `limit` more aggressively. It's only oversized `request` values that are causing us issues.</li>
+</ul>
+
+<br>
+<br>
+Thank you for your commitment to resource efficiency.
+<br>
+<br>
+<strong>
+  Warm regards,<br>
+  Jason
+</strong>

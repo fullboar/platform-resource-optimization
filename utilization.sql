@@ -65,4 +65,30 @@ update_changetimestamp_column();
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE project to app_api_704fkrus;
 GRANT USAGE, SELECT ON SEQUENCE project_id_seq TO app_api_704fkrus;
 
+
+-- 
+-- requests
+-- 
+
+CREATE TABLE IF NOT EXISTS request (
+    id                              SERIAL PRIMARY KEY,
+    project_set_id                  VARCHAR(8) NOT NULL,
+    batch_id                        smallint NOT NULL,
+    request_at                      timestamp without time zone NOT NULL,
+    archived                        boolean DEFAULT false NOT NULL,
+    created_at                      timestamp without time zone DEFAULT CURRENT_TIMESTAMP(3),
+    updated_at                      timestamp without time zone DEFAULT CURRENT_TIMESTAMP(3),
+    CONSTRAINT fk_project_set_id FOREIGN KEY(project_set_id) REFERENCES project(project_set_id)
+);
+
+CREATE INDEX IF NOT EXISTS project_set_id_idx ON request (project_set_id);
+
+DROP TRIGGER IF EXISTS request_changetimestamp on request;
+CREATE TRIGGER update_request_changetimestamp BEFORE UPDATE
+ON request FOR EACH ROW EXECUTE PROCEDURE 
+update_changetimestamp_column();
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE request to app_api_704fkrus;
+GRANT USAGE, SELECT ON SEQUENCE request_id_seq TO app_api_704fkrus;
+
 END TRANSACTION;
